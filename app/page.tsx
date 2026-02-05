@@ -50,7 +50,7 @@ export default function Home() {
             Recreational Dive Planner Web App
           </h1>
 
-          <p className="max-w-md sm:max-w-xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-md sm:max-w-xl text-[clamp(14px,1.2vw,18px)] leading-8 text-zinc-600 dark:text-zinc-400">
             Aplicación web desarrollada con Next.js para consultar y planificar
             inmersiones recreativas basadas en la tabla RDP (métrica).
           </p>
