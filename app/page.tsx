@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RdpDialog } from "@/components/rdp-dialog";
 
 export default function Home() {
   return (
@@ -75,21 +76,13 @@ export default function Home() {
 
         <div className="flex flex-col gap-4 text-base font-medium md:flex-row">
           <Link
-  className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-all hover:opacity-90 md:w-[220px]"
-  href="/planner"
->
-  Ir a planificación
-</Link>
-
-
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid px-5 transition-colors hover:border-transparent md:w-[220px] border-border hover:bg-accent hover:text-accent-foreground"
-            href="/rdp_table/rdp-metric-front.png"
-            target="_blank"
-            rel="noopener noreferrer"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-all hover:opacity-90 md:w-[220px]"
+            href="/planner"
           >
-            Ver tabla RDP
-          </a>
+            Ir a planificación
+          </Link>
+
+          <RdpDialog />
         </div>
 
         <Image
