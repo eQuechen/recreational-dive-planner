@@ -3,7 +3,7 @@
 ## Descripción
 Este proyecto es una **aplicación web** desarrollada con **Next.js** que digitaliza parte de la **tabla RDP (Recreational Dive Planner)** utilizada en buceo recreativo.
 
-El objetivo del proyecto es **demostrar la capacidad de aprender una nueva tecnología, aplicarla y explicar las decisiones técnicas tomadas**, no crear una herramienta de uso profesional.
+La **tabla RDP** es una herramienta utilizada para calcular los **límites de no descompresión (NDL)** en función de la **profundidad máxima** y el **tiempo de fondo**, permitiendo planificar inmersiones recreativas dentro de márgenes de seguridad.
 
 > ⚠️ **AVISO**: Implementación técnica basada en tablas RDP con fines demostrativos.  
 > **NO válida para planificación real de inmersiones.**
