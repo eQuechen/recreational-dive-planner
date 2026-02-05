@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center bg-white px-16 py-32 dark:bg-black md:items-start">
+    <div className="flex min-h-screen items-center justify-center bg-background font-sans">
+      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center bg-background px-16 py-32 md:items-start">
         {/* Light - Desktop */}
         <Image
           className="hidden sm:block dark:hidden"
@@ -46,17 +46,17 @@ export default function Home() {
         />
 
         <div className="flex flex-col mt-10 mb-20 items-center gap-6 text-center md:items-start md:text-left">
-          <h1 className="max-w-xs sm:max-w-xl text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+          <h1 className="max-w-xs sm:max-w-xl text-3xl font-semibold leading-10 tracking-tight text-foreground">
             Recreational Dive Planner Web App
           </h1>
 
-          <p className="max-w-md sm:max-w-xl text-[clamp(14px,1.2vw,18px)] leading-8 text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-md sm:max-w-xl text-[clamp(14px,1.2vw,18px)] leading-8 text-muted-foreground">
             Aplicación web desarrollada con Next.js para consultar y planificar
             inmersiones recreativas basadas en la tabla RDP (métrica).
           </p>
 
-          <div className="max-w-md sm:max-w-xl rounded-xl border border-black/[.08] bg-zinc-50 p-5 text-left text-sm text-zinc-700 dark:border-white/[.145] dark:bg-[#0f0f0f] dark:text-zinc-300">
-            <p className="font-semibold text-black dark:text-zinc-50">
+          <div className="max-w-md sm:max-w-xl rounded-xl border p-5 text-left text-sm border-border bg-muted text-muted-foreground">
+            <p className="font-semibold text-foreground">
               Cómo usar la app
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">
@@ -67,7 +67,7 @@ export default function Home() {
             </ul>
           </div>
 
-          <p className="max-w-md sm:max-w-xl text-xs text-zinc-500 dark:text-zinc-500">
+          <p className="max-w-md sm:max-w-xl text-xs text-muted-foreground">
             ⚠️ Implementación técnica basada en tablas RDP con fines demostrativos.<br />
             No válida para planificación real de inmersiones.
           </p>
@@ -75,14 +75,15 @@ export default function Home() {
 
         <div className="flex flex-col gap-4 text-base font-medium md:flex-row">
           <Link
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[220px]"
-            href="/planner"
-          >
-            Ir a planificación
-          </Link>
+  className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-all hover:opacity-90 md:w-[220px]"
+  href="/planner"
+>
+  Ir a planificación
+</Link>
+
 
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[220px]"
+            className="flex h-12 w-full items-center justify-center rounded-full border border-solid px-5 transition-colors hover:border-transparent md:w-[220px] border-border hover:bg-accent hover:text-accent-foreground"
             href="/rdp_table/rdp-metric-front.png"
             target="_blank"
             rel="noopener noreferrer"
