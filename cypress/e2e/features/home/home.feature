@@ -10,14 +10,19 @@ Feature: Página de inicio
     And debería ver el encabezado "Recreational Dive Planner Web App"
     And debería ver el texto "Cómo usar la app"
     And debería ver el enlace "Ir a planificación"
-    And debería ver el enlace "Ver tabla RDP"
+    And debería ver el botón "Ver tabla RDP"
+
+  Scenario: El usuario puede abrir la tabla RDP y ver las dos imágenes
+    Given el usuario visita la página de inicio
+    When el usuario hace click en "Ver tabla RDP"
+    Then debería mostrarse el modal de la tabla RDP
+    And debería mostrarse la imagen "Tabla RDP frontal"
+    When el usuario avanza a la siguiente imagen del carrusel
+    Then debería mostrarse la imagen "Tabla RDP trasera"
+
+
 
   Scenario: El usuario puede navegar al planificador
     Given el usuario visita la página de inicio
     When hace clic en el enlace "Ir a planificación"
     Then la URL debería contener "/planner"
-
-  Scenario: El usuario puede abrir la tabla RDP en una nueva pestaña
-    Given el usuario visita la página de inicio
-    Then el enlace "Ver tabla RDP" debería tener href "/rdp_table/rdp-metric-front.png"
-    And el enlace "Ver tabla RDP" debería tener target "_blank"
