@@ -1,5 +1,7 @@
 # RDP Planner web app
 
+
+
 ## Descripción
 Este proyecto es una **aplicación web** desarrollada con **Next.js** que digitaliza parte de la **tabla RDP (Recreational Dive Planner)** utilizada en buceo recreativo.
 
@@ -10,24 +12,38 @@ La **tabla RDP** es una herramienta utilizada para calcular los **límites de no
 
 ---
 
+
+
+## Demo
+Es posible acceder a la aplicación en producción a través del siguiente enlace: [RDP Planner](https://recreational-dive-planner.vercel.app/).
+
+---
+
+
+
 ## Tecnologías utilizadas
 
 El proyecto se está desarrollando con las siguientes tecnologías y versiones:
 
+
 ### Lenguaje
 - **JavaScript**
 
+
 ### Runtime
 - **Node.js**: v24.x (LTS activa)
+
 
 ### Frameworks y librerías
 - **Next.js**: v16.1.6 (instalada mediante `create-next-app`)
 - **React**: v19.2.3 (incluida con Next.js)
 
+
 ### Herramientas de desarrollo
 - **npm**: v11.6.2
 - **npx**: v11.6.2
 - **ESLint**: v9.39.2 (incluida con Next.js)
+
 
 ### Entorno de desarrollo
 - Sistema operativo: **macOS**
@@ -38,6 +54,7 @@ El proyecto se está desarrollando con las siguientes tecnologías y versiones:
   
 ---
 
+
 ## Componentes reutilizables
 
 Se han implementado componentes reutilizables para mejorar la modularidad y escalabilidad del proyecto:
@@ -47,15 +64,27 @@ Se han implementado componentes reutilizables para mejorar la modularidad y esca
 
 ---
 
+
+## CI/CD
+
+Este proyecto implementa un flujo de **CI/CD**:
+
+- **CI (Continuous Integration):** GitHub Actions ejecuta automáticamente los tests end-to-end de **Cypress** en cada `push` y en cada `pull request`. El merge a `main` queda bloqueado si los tests no pasan correctamente.
+- **CD (Continuous Deployment):** El despliegue a producción se realiza automáticamente en **Vercel** cuando los cambios son mergeados en la rama `main`.
+
 ---
+
+
 
 ## Testing
 
 El proyecto incluye **tests End-to-End (E2E)** utilizando **Cypress** junto con **Cucumber (BDD)**.
 
+
 ### Herramientas
 - **Cypress**: framework de testing E2E.
 - **Cucumber Preprocessor**: permite escribir escenarios en formato `.feature` usando sintaxis Gherkin.
+
 
 ### Estructura de tests
 
@@ -72,9 +101,11 @@ cypress/
       example2.ts
 ```
 
+
 ### Ejecutar los tests (Cypress + Cucumber)
 
 Para ejecutar los tests E2E es necesario levantar primero el servidor de desarrollo de Next.js y después lanzar Cypress.
+
 
 #### 1 Iniciar el servidor de desarrollo (Next.js)
 
@@ -83,6 +114,7 @@ Este comando arranca la aplicación en modo desarrollo en `http://localhost:3000
 ```bash
 npm run dev
 ```
+
 
 #### 2-A Ejecutar Cypress en modo interactivo (UI)
 
@@ -99,9 +131,11 @@ npx cypress open
 4. En la lista de specs haz clic en los archivos .feature:
 `cypress/feature/example/example.feature`
 
+
 #### 2-B Ejecutar Cypress en modo headless (CLI)
 
 Ejecuta todos los tests automáticamente desde terminal, sin interfaz gráfica.
 ```bash
 npx cypress run
 ```
+---
