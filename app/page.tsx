@@ -4,7 +4,6 @@ import { RdpDialog } from "@/components/rdp-dialog";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background font-sans">
       <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center bg-background px-16 py-32 md:items-start">
         {/* Light - Desktop */}
         <Image
@@ -92,6 +91,5 @@ export default function Home() {
           height={338}
         />
       </main>
-    </div>
   );
 }
