@@ -13,7 +13,6 @@ export default function Home() {
           alt="eQuechen logo"
           width={280}
           height={100}
-          priority
         />
 
         {/* Light - Mobile */}
@@ -22,8 +21,7 @@ export default function Home() {
           src="/equechen-logo-light.png"
           alt="eQuechen logo"
           width={100}
-          height={20}
-          priority
+          height={100}
         />
 
         {/* Dark - Desktop */}
@@ -32,8 +30,7 @@ export default function Home() {
           src="/equechen-dark.png"
           alt="eQuechen logo"
           width={280}
-          height={100}
-          priority
+          height={97}
         />
 
         {/* Dark - Mobile */}
@@ -42,8 +39,7 @@ export default function Home() {
           src="/equechen-logo-dark.png"
           alt="eQuechen logo"
           width={100}
-          height={20}
-          priority
+          height={100}
         />
 
         <div className="flex flex-col mt-10 mb-20 items-center gap-6 text-center md:items-start md:text-left">
@@ -93,8 +89,7 @@ export default function Home() {
           src="/rdp_table/rdp-draw.png"
           alt="RDP draw"
           width={600}
-          height={300}
-          priority
+          height={338}
         />
       </main>
     </div>

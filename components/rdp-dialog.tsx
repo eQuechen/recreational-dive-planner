@@ -42,8 +42,8 @@ export function RdpDialog() {
                             <Image
                                 src="/rdp_table/rdp-metric-front.png"
                                 alt="Tabla RDP frontal"
-                                width={1600}
-                                height={1200}
+                                width={622}
+                                height={466}
                                 className="w-full rounded-lg border border-border"
                                 priority
                             />
@@ -53,8 +53,8 @@ export function RdpDialog() {
                             <Image
                                 src="/rdp_table/rdp-metric-back.png"
                                 alt="Tabla RDP trasera"
-                                width={1600}
-                                height={1200}
+                                width={622}
+                                height={466}
                                 className="w-full rounded-lg border border-border"
                                 priority
                             />
