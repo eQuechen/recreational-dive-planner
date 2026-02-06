@@ -38,9 +38,9 @@ export function PlannerForm() {
                     <FieldDescription></FieldDescription>
                 </Field>
 
-                <Field orientation="horizontal">
-                    <Button type="submit">Calcular NDL</Button>
-                    <Button variant="outline" type="button">
+                <Field className="flex flex-col md:flex-row gap-4">
+                    <Button className="md:flex-4" size="lg" type="submit">Calcular NDL</Button>
+                    <Button className="md:flex-1" size="lg" variant="outline" type="button">
                         Borrar
                     </Button>
                 </Field>
