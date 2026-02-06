@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex min-h-screen items-center justify-center bg-background font-sans">
             <Providers>
-              <div className="absolute right-0 mr-20 top-10 z-50">
+              <div className="fixed right-[1rem] sm:right-[2rem] md:right-[4rem] top-[2rem] sm:top-[2rem] md:top-[4rem] z-50">
                 <ThemeToggle />
               </div>
               {children}
