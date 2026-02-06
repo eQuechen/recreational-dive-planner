@@ -36,12 +36,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <div className="absolute right-0 mr-20 top-10 z-50">
-            <ThemeToggle/>
-          </div>
-          {children}
-        </Providers>
+        <div className="flex min-h-screen items-center justify-center bg-background font-sans">
+            <Providers>
+              <div className="absolute right-0 mr-20 top-10 z-50">
+                <ThemeToggle />
+              </div>
+              {children}
+            </Providers>
+        </div>
       </body>
     </html>
   );
