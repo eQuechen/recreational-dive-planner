@@ -4,7 +4,7 @@ import { RdpDialog } from "@/components/rdp-dialog";
 
 export default function Home() {
   return (
-      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center bg-background px-16 py-32 md:items-start">
+      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center md:items-start bg-background sm:px-8 md:px-16 py-16 sm:py-24 md:py-32">
         {/* Light - Desktop */}
         <Image
           className="hidden sm:block dark:hidden"
@@ -71,7 +71,7 @@ export default function Home() {
 
         <div className="flex flex-col gap-4 text-base font-medium md:flex-row">
           <Link
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-all hover:opacity-90 md:w-[220px]"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground text-background transition-all hover:opacity-90 md:w-[220px] py-3 md:py-3 px-5"
             href="/planner"
           >
             Ir a planificación
