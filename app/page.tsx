@@ -4,7 +4,7 @@ import { RdpDialog } from "@/components/rdp-dialog";
 
 export default function Home() {
   return (
-      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center md:items-start bg-background px-4 sm:px-8 md:px-16 py-16 sm:py-24 md:py-32">
+<main className="min-h-screen w-full max-w-7xl mx-auto flex flex-col items-center justify-center md:items-start py-8 md:py-16">
         {/* Light - Desktop */}
         <Image
           className="hidden sm:block dark:hidden"
@@ -41,14 +41,13 @@ export default function Home() {
           height={100}
         />
 
-        <div className="flex flex-col mt-10 mb-20 items-center gap-6 text-center md:items-start md:text-left">
+        <div className="flex flex-col mt-5 mb-10 items-center gap-6 text-center md:items-start md:text-left">
           <h1 className="max-w-xs sm:max-w-xl text-3xl font-semibold leading-10 tracking-tight text-foreground">
             Recreational Dive Planner Web App
           </h1>
 
           <p className="max-w-md sm:max-w-xl text-[clamp(14px,1.2vw,18px)] leading-8 text-muted-foreground">
-            Aplicación web desarrollada con Next.js para consultar y planificar
-            inmersiones recreativas basadas en la tabla RDP (métrica).
+            Consulta y planifica inmersiones recreativas basadas en tablas RDP (métrica).
           </p>
 
           <div className="max-w-md sm:max-w-xl rounded-xl border p-5 text-left text-sm border-border bg-muted text-muted-foreground">
@@ -56,15 +55,16 @@ export default function Home() {
               Cómo usar la app
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">
-              <li>Accede a la sección de planificación.</li>
-              <li>Introduce la profundidad máxima (metros).</li>
-              <li>Introduce el tiempo de fondo (minutos).</li>
-              <li>La app devolverá el límite NDL correspondiente.</li>
+              <li>Accede a la planificación.</li>
+              <li>Introduce la profundidad máxima.</li>
+              <li>La app devolverá el límite NDL.</li>
+              <li>Introduce el tiempo de fondo.</li>
+              <li>La app devolverá el grupo de presión.</li>
             </ul>
           </div>
 
           <p className="max-w-md sm:max-w-xl text-xs text-muted-foreground">
-            ⚠️ Implementación técnica basada en tablas RDP con fines demostrativos.<br />
+            ⚠️ Basada en tablas RDP con fines demostrativos.<br />
             No válida para planificación real de inmersiones.
           </p>
         </div>
