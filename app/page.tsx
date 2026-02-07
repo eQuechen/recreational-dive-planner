@@ -4,7 +4,7 @@ import { RdpDialog } from "@/components/rdp-dialog";
 
 export default function Home() {
   return (
-      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center md:items-start bg-background sm:px-8 md:px-16 py-16 sm:py-24 md:py-32">
+      <main className="relative flex min-h-screen w-full max-w-7xl flex-col justify-center items-center md:items-start bg-background px-4 sm:px-8 md:px-16 py-16 sm:py-24 md:py-32">
         {/* Light - Desktop */}
         <Image
           className="hidden sm:block dark:hidden"
