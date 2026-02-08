@@ -14,19 +14,17 @@ export default function planner() {
                 Volver
             </Link>
 
-
             <div className="flex justify-center">
 
                  {/* Descomentar tras la implementación*/}
-                {/* <PlannerForm /> */}
+                <PlannerForm />
 
                 {/* Eliminar tras la implementación*/}
-                <DisabledDialog>
+                {/* <DisabledDialog>
                     <PlannerForm />
-                </DisabledDialog>
+                </DisabledDialog> */}
 
             </div>
-
         </main>
     )
 }

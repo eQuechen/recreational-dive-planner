@@ -1,6 +1,12 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import {
+    calculatePrevGroup,
+    calculateNDL,
+    calculatePostGroup
+} from "@/lib/planner/plannerForm.service";
 
 import {
     Field,
@@ -28,7 +34,6 @@ import { Switch } from "./ui/switch"
 import { Button } from "./ui/button";
 
 type PlannerFormState = {
-    successiveDive: boolean;
     currentGroup: string;
     surfaceInterval: string;
     prevGroup: string;
@@ -39,7 +44,6 @@ type PlannerFormState = {
 }
 
 const initialFormState: PlannerFormState = {
-    successiveDive: false,
     currentGroup: "",
     surfaceInterval: "",
     prevGroup: "-",
@@ -55,6 +59,56 @@ export function PlannerForm() {
     const [formState, setFormState] = useState<PlannerFormState>(initialFormState);
     const formReset = () => setFormState(initialFormState);
 
+    useEffect(() => {
+        const prevGroup = calculatePrevGroup(
+            successiveDive,
+            formState.currentGroup,
+            formState.surfaceInterval
+        );
+
+        if (prevGroup === formState.prevGroup) return;
+
+        setFormState((prev) => ({
+            ...prev,
+            prevGroup: prevGroup
+        }));
+    }, [successiveDive, formState.currentGroup, formState.surfaceInterval, formState.prevGroup]);
+
+
+    useEffect(() => {
+        const ndl = calculateNDL(
+            successiveDive,
+            formState.depth,
+            formState.prevGroup
+        );
+
+        if (ndl === formState.ndl) return;
+
+        setFormState((prev) => ({
+            ...prev,
+            ndl: ndl
+        }));
+    }, [successiveDive, formState.depth, formState.prevGroup, formState.ndl]);
+
+    function handleCalculatePostGroup() {
+        const postGroup = calculatePostGroup(
+            successiveDive,
+            formState.depth,
+            formState.bottomTime,
+            formState.prevGroup
+        );
+
+        if (postGroup === formState.postGroup) {
+            return;
+        }
+
+        setFormState((prev) => ({
+            ...prev,
+            postGroup: postGroup
+        }));
+    }
+
+
     return (
         <FieldSet className="w-full max-w-md my-10">
             <FieldLegend>RDP digital</FieldLegend>
@@ -66,7 +120,7 @@ export function PlannerForm() {
                     <Switch
                         id="successive-dive"
                         checked={successiveDive}
-                        onCheckedChange= {
+                        onCheckedChange={
                             (checked) => {
                                 setSuccessiveDive(checked);
                                 if (!checked) {
@@ -76,11 +130,12 @@ export function PlannerForm() {
                                         currentGroup: "",
                                         surfaceInterval: "",
                                         prevGroup: "-",
+                                        postGroup: "-"
                                     });
                                 }
                             }
 
-                            
+
                         } />
                     <FieldLabel htmlFor="successive-dive">Inmersión sucesiva</FieldLabel>
                 </Field>
@@ -157,7 +212,6 @@ export function PlannerForm() {
                             className="max-w-15 text-center"
                             readOnly
                             value={formState.prevGroup}
-                            // value should be calculated based on currentGroup and surfaceInterval, but for now it's just a placeholder
                         />
                     </Field>
                 </div>
@@ -177,30 +231,30 @@ export function PlannerForm() {
                         step={1}
                         value={formState.depth}
                         onChange={(e) => setFormState({ ...formState, depth: e.target.value })}
+                        suppressHydrationWarning
                     />
                     <FieldDescription></FieldDescription>
                 </Field>
 
                 {/* NDL field */}
                 <Field>
-                        <FieldLabel htmlFor="ndl">
-                            Límite de no descompresión (NDL)
-                        </FieldLabel>
-                        <div className="flex items-center gap-2">
-                            <Input
-                                type="text"
-                                id="ndl"
-                                autoComplete="off"
-                                placeholder="-"
-                                className="max-w-15 text-center"
-                                readOnly
-                                value={formState.ndl}
-                                // value should be calculated based on depth (and currentGroup and surfaceInterval if it's a successive dive), but for now it's just a placeholder
-                            />
-                            <span className="text-sm text-muted-foreground">
-                                min
-                            </span>
-                        </div>
+                    <FieldLabel htmlFor="ndl">
+                        Límite de no descompresión (NDL)
+                    </FieldLabel>
+                    <div className="flex items-center gap-2">
+                        <Input
+                            type="text"
+                            id="ndl"
+                            autoComplete="off"
+                            placeholder="-"
+                            className="max-w-15 text-center"
+                            readOnly
+                            value={formState.ndl}
+                        />
+                        <span className="text-sm text-muted-foreground">
+                            min
+                        </span>
+                    </div>
                 </Field>
 
                 {/* Bottom time field */}
@@ -208,30 +262,31 @@ export function PlannerForm() {
                     <FieldLabel htmlFor="bottom-time">
                         Tiempo de fondo (min)
                     </FieldLabel>
-                    <Input type="number"
+                    <Input
+                        type="number"
                         id="bottom-time"
                         autoComplete="off"
                         placeholder="ej: 35"
                         value={formState.bottomTime}
                         onChange={(e) => setFormState({ ...formState, bottomTime: e.target.value })}
+                        suppressHydrationWarning
                     />
                 </Field>
 
                 {/* Post-dive pressure group field */}
                 <Field>
-                        <FieldLabel htmlFor="post-group" className="pr-4">
-                            Grupo de presión post-inmersión
-                        </FieldLabel>
-                        <Input
-                            type="text"
-                            id="post-group"
-                            autoComplete="off"
-                            placeholder="-"
-                            className="max-w-15 text-center"
-                            readOnly
-                            value={formState.postGroup}
-                            // value should be calculated based on depth and bottomTime (and currentGroup and surfaceInterval if it's a successive dive), but for now it's just a placeholder
-                        />
+                    <FieldLabel htmlFor="post-group" className="pr-4">
+                        Grupo de presión post-inmersión
+                    </FieldLabel>
+                    <Input
+                        type="text"
+                        id="post-group"
+                        autoComplete="off"
+                        placeholder="-"
+                        className="max-w-15 text-center"
+                        readOnly
+                        value={formState.postGroup}
+                    />
                 </Field>
 
                 {/* Interactive buttons */}
@@ -239,7 +294,8 @@ export function PlannerForm() {
                     <Button
                         className="md:flex-4"
                         size="lg"
-                        type="submit"
+                        type="button"
+                        onClick={handleCalculatePostGroup}
                     >
                         Calcular grupo
                     </Button>
