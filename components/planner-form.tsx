@@ -27,9 +27,33 @@ import { Input } from "./ui/input"
 import { Switch } from "./ui/switch"
 import { Button } from "./ui/button";
 
+type PlannerFormState = {
+    successiveDive: boolean;
+    currentGroup: string;
+    surfaceInterval: string;
+    prevGroup: string;
+    depth: string;
+    ndl: string;
+    bottomTime: string;
+    postGroup: string;
+}
+
+const initialFormState: PlannerFormState = {
+    successiveDive: false,
+    currentGroup: "",
+    surfaceInterval: "",
+    prevGroup: "-",
+    depth: "",
+    ndl: "-",
+    bottomTime: "",
+    postGroup: "-"
+}
+
 export function PlannerForm() {
 
     const [successiveDive, setSuccessiveDive] = useState<boolean>(false);
+    const [formState, setFormState] = useState<PlannerFormState>(initialFormState);
+    const formReset = () => setFormState(initialFormState);
 
     return (
         <FieldSet className="w-full max-w-md my-10">
@@ -42,7 +66,22 @@ export function PlannerForm() {
                     <Switch
                         id="successive-dive"
                         checked={successiveDive}
-                        onCheckedChange={setSuccessiveDive} />
+                        onCheckedChange= {
+                            (checked) => {
+                                setSuccessiveDive(checked);
+                                if (!checked) {
+                                    // If the switch is turned off, reset the successive dive-related fields
+                                    setFormState({
+                                        ...formState,
+                                        currentGroup: "",
+                                        surfaceInterval: "",
+                                        prevGroup: "-",
+                                    });
+                                }
+                            }
+
+                            
+                        } />
                     <FieldLabel htmlFor="successive-dive">Inmersión sucesiva</FieldLabel>
                 </Field>
 
@@ -52,7 +91,10 @@ export function PlannerForm() {
                     {/* Current pressure group field */}
                     <Field>
                         <FieldLabel htmlFor="current-group">Grupo de presión actual</FieldLabel>
-                        <Select>
+                        <Select
+                            value={formState.currentGroup}
+                            onValueChange={(value) => setFormState({ ...formState, currentGroup: value })}
+                        >
                             <SelectTrigger id="current-group">
                                 <SelectValue placeholder="Selecciona grupo" />
                             </SelectTrigger>
@@ -97,6 +139,8 @@ export function PlannerForm() {
                             placeholder="ej: 60"
                             min={1}
                             max={219}
+                            value={formState.surfaceInterval}
+                            onChange={(e) => setFormState({ ...formState, surfaceInterval: e.target.value })}
                         />
                     </Field>
 
@@ -112,6 +156,8 @@ export function PlannerForm() {
                             placeholder="-"
                             className="max-w-15 text-center"
                             readOnly
+                            value={formState.prevGroup}
+                            // value should be calculated based on currentGroup and surfaceInterval, but for now it's just a placeholder
                         />
                     </Field>
                 </div>
@@ -129,6 +175,8 @@ export function PlannerForm() {
                         min={1}
                         max={40}
                         step={1}
+                        value={formState.depth}
+                        onChange={(e) => setFormState({ ...formState, depth: e.target.value })}
                     />
                     <FieldDescription></FieldDescription>
                 </Field>
@@ -146,6 +194,8 @@ export function PlannerForm() {
                                 placeholder="-"
                                 className="max-w-15 text-center"
                                 readOnly
+                                value={formState.ndl}
+                                // value should be calculated based on depth (and currentGroup and surfaceInterval if it's a successive dive), but for now it's just a placeholder
                             />
                             <span className="text-sm text-muted-foreground">
                                 min
@@ -155,9 +205,16 @@ export function PlannerForm() {
 
                 {/* Bottom time field */}
                 <Field>
-                    <FieldLabel htmlFor="bottom-time">Tiempo de fondo (min)</FieldLabel>
-                    <Input type="number" id="bottom-time" autoComplete="off" placeholder="ej: 35" />
-                    <FieldDescription></FieldDescription>
+                    <FieldLabel htmlFor="bottom-time">
+                        Tiempo de fondo (min)
+                    </FieldLabel>
+                    <Input type="number"
+                        id="bottom-time"
+                        autoComplete="off"
+                        placeholder="ej: 35"
+                        value={formState.bottomTime}
+                        onChange={(e) => setFormState({ ...formState, bottomTime: e.target.value })}
+                    />
                 </Field>
 
                 {/* Post-dive pressure group field */}
@@ -172,6 +229,8 @@ export function PlannerForm() {
                             placeholder="-"
                             className="max-w-15 text-center"
                             readOnly
+                            value={formState.postGroup}
+                            // value should be calculated based on depth and bottomTime (and currentGroup and surfaceInterval if it's a successive dive), but for now it's just a placeholder
                         />
                 </Field>
 
@@ -189,6 +248,7 @@ export function PlannerForm() {
                         size="lg"
                         variant="outline"
                         type="button"
+                        onClick={formReset}
                     >
                         Borrar
                     </Button>
