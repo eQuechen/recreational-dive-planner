@@ -10,3 +10,5 @@
 
 export * from "./rdp.types";
 export * from "./rdp.data";
+export * from "./rdp.utils";
+export * from "./rdp.service";
