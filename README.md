@@ -5,9 +5,11 @@
 ## Descripción
 Este proyecto es una **aplicación web** desarrollada con **Next.js** que digitaliza parte de la **tabla RDP (Recreational Dive Planner)** utilizada en buceo recreativo.
 
-La **tabla RDP** es una herramienta utilizada para calcular los **límites de no descompresión (NDL)** en función de la **profundidad máxima** y el **tiempo de fondo**, permitiendo planificar inmersiones recreativas dentro de márgenes de seguridad.
+La **tabla RDP** es una herramienta utilizada para calcular tanto los **límites de no descompresión (NDL)** como **el grupo de presión (PG) tras la inmersión**, todo esto, en función de la **profundidad máxima** y el **tiempo de fondo**, permitiendo planificar inmersiones recreativas dentro de márgenes de seguridad.
 
-> ⚠️ **AVISO**: Implementación técnica basada en tablas RDP con fines demostrativos.  
+Es posible planificar tanto inmersiones simples como inmersiones sucesivas. Estas últimas tienen en cuenta el nitrógeno residual **RNT** en los tejidos del buceador tras una inmersión previa, ya que tanto el **NDL** como el **PG** resultante variarán. No considerar estos datos durante la planificación reduce significativamente el margen de seguridad.
+
+> ⚠️ **AVISO**: Implementación técnica basada en tablas RDP con fines exclusivamente demostrativos.
 > **NO válida para planificación real de inmersiones.**
 
 ---
@@ -23,11 +25,11 @@ Es posible acceder a la aplicación en producción a través del siguiente enlac
 
 ## Tecnologías utilizadas
 
-El proyecto se está desarrollando con las siguientes tecnologías y versiones:
+El proyecto se ha desarrollado con las siguientes tecnologías y versiones:
 
 
 ### Lenguaje
-- **JavaScript**
+- **TypeScript**: v5.9.3
 
 
 ### Runtime
@@ -37,6 +39,8 @@ El proyecto se está desarrollando con las siguientes tecnologías y versiones:
 ### Frameworks y librerías
 - **Next.js**: v16.1.6 (instalada mediante `create-next-app`)
 - **React**: v19.2.3 (incluida con Next.js)
+- **TailwindCSS**: v4.x
+- **next-themes**: v0.4.6
 
 
 ### Herramientas de desarrollo
@@ -60,7 +64,7 @@ El proyecto se está desarrollando con las siguientes tecnologías y versiones:
 Se han implementado componentes reutilizables para mejorar la modularidad y escalabilidad del proyecto:
 
 - **ThemeProvider (next-themes)**: gestión global del tema (light / dark / system) mediante clase `dark` en el HTML.
-- **Componentes UI (shadcn/ui)**: uso de componentes reutilizables preconstruidos como `Button` y `DropdownMenu` para implementar el selector de tema.
+- **Componentes UI (shadcn/ui)**: uso de componentes reutilizables, como `DropdownMenu` para implementar el selector de tema y `Input`, `Switch`, `Select`, etc, para la página del planificador de inmersiones.
 
 ---
 
@@ -92,13 +96,17 @@ Los tests se organizan por dominio/feature:
 
 ```txt
 cypress/
-  feature/
-    example1/
-      example1.feature
-      example1.ts
-    example2/
-      example2.feature
-      example2.ts
+└── e2e/
+    └── feature/
+        ├── home/
+        │   ├── home.feature
+        │   └── home.ts
+        ├── planner/
+        │   ├── planner.feature
+        │   └── planner.ts
+        └── theme/
+            ├── theme.feature
+            └── theme.ts
 ```
 
 
@@ -129,7 +137,9 @@ npx cypress open
 `Chrome (recomendado)`
 3. Start E2E Testing in Chrome
 4. En la lista de specs haz clic en los archivos .feature:
-`cypress/feature/example/example.feature`
+`cypress/e2e/feature/home/home.feature`
+`cypress/e2e/feature/planner/planner.feature`
+`cypress/e2e/feature/theme/theme.feature`
 
 
 #### 2-B Ejecutar Cypress en modo headless (CLI)
