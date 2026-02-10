@@ -81,7 +81,7 @@ export default function Home() {
         </div>
 
         <Image
-          className="absolute pt-55 right-16 hidden md:block opacity-50 invert dark:invert-0 pointer-events-none"
+          className="absolute pt-55 self-end hidden md:block opacity-50 invert dark:invert-0 pointer-events-none"
           style={{
             maxWidth: "calc(100% - 34rem)"
           }}
